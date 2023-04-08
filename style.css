@@ -1,0 +1,77 @@
+
+body {
+
+background-image: url("cat_body.png");
+
+background-position: center center;
+
+background-repeat: no-repeat;
+
+background-attachment: fixed;
+
+background-size: cover;
+
+background-color: #000000;
+
+}
+
+#left_avatar{
+	width:167px;
+	height:171px;
+	border :0px solid blue;
+	border-radius:  40% 80%;
+	overflow: hidden;
+    display: inline-block;
+	position:absolute;
+	top:26.6%;
+	left:31.5%;
+	text-align: center;
+}
+
+#left_eye{
+	position:absolute;
+	height:100%;
+	width:100%;
+	
+	top:-1px;
+	bottom:0px;
+	left:-1px;
+	right:0px;
+}
+
+#right_avatar{
+	width:170px;
+	height:170px;
+	border :0px solid blue;
+	border-radius:  60% 40%;
+	overflow: hidden;
+    display: inline-block;
+	position:absolute;
+	top:35.8%;
+	left:52.5%;
+	text-align: center;
+	/* transform:rotate(-20deg); */
+}
+
+#right_eye{
+	position:absolute;
+	height:100%;
+	width:100%;
+	
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	
+}
+
+.dot {
+	  position: absolute;
+	  width: 10px;
+	  height: 10px;
+	  border-radius: 100%;
+	  background: #000009;
+	  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+	  top:400px;
+	  left:679px;
+}

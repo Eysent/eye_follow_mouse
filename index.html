@@ -1,0 +1,113 @@
+<head>
+
+<body>
+<link REL=stylesheet href="style.css" type="text/css">
+	 
+	<div class="dot"></div>
+	<div id="left_avatar">
+		<img id="left_eye" src="eye_ball.png">
+		
+	</div>
+	<div id="right_avatar">
+		<img id="right_eye" src="eye_ball.png">
+	</div>
+</body>
+
+<script type="text/javascript">
+	var updateEyeballPosition = function(){
+		var docu_body = document.body;
+		docu_body.onmousemove = function(e){
+			var pointer = getCoordInDocument(e);
+			var left_eyeball = document.getElementById("left_eye");
+			var right_eyeball = document.getElementById("right_eye");
+			var left_eye = document.getElementById("left_avatar");
+			var right_eye = document.getElementById("right_avatar");
+
+			var left_rect = left_eye.getBoundingClientRect();
+			var right_rect = right_eye.getBoundingClientRect();
+			var center = {
+				left: left_rect.left + (right_rect.right - left_rect.left) / 2,
+				top: left_rect.top + (right_rect.bottom - left_rect.top) / 2
+			}
+			
+		
+			var max_margin = (left_rect.right - left_rect.left) / 15;
+			var x = pointer.x - center.left;
+			var y = pointer.y - center.top;
+			
+			var d  = Math.sqrt(Math.pow(x,2)+ Math.pow(y,2));
+			var r = -(max_margin)*Math.exp(-d/max_margin/50) + max_margin;;
+			
+			var cos_theta = x/d;
+			var theta = Math.atan(-y/x);
+			
+			left_eyeball.style.left = r*cos_theta;
+			right_eyeball.style.left = r*cos_theta;
+			if (y>=0){
+				left_eyeball.style.top = r*Math.sqrt((1-Math.pow(cos_theta,2)));
+				right_eyeball.style.top = r*Math.sqrt((1-Math.pow(cos_theta,2)));
+			}
+			else{
+				left_eyeball.style.top = -r*Math.sqrt((1-Math.pow(cos_theta,2)));
+				right_eyeball.style.top = -r*Math.sqrt((1-Math.pow(cos_theta,2)));
+			}
+			
+			<!-- if (x>=0 && y>=0){ -->
+				
+			<!-- }else if(x>=0 && y<0){ -->
+			
+			<!-- }else if(x<0 && y<0){ -->
+			
+			<!-- }else{ -->
+			
+			<!-- } -->
+		}	
+	}
+
+
+
+var getCoordInDocument = function(e) {
+	e = e || window.event;
+	var x = e.pageX ;
+	var y= e.pageY ;
+	return {'x':x,'y':y};
+}
+
+function changePosition(image,image_box,pointer) 
+{
+	var rect = image_box.getBoundingClientRect();
+	var center = {
+		left: rect.left + (rect.right - rect.left) / 2,
+		top: rect.top + (rect.bottom - rect.top) / 2
+	}
+
+	
+	var max_margin_x = (rect.right - rect.left) / 20;
+	var max_margin_y = (rect.bottom - rect.top) / 20;
+	
+	var x = pointer.x - center.left;
+	var y = pointer.y - center.top;
+	
+	setTimeout(function (){
+		if (x>=0){
+			image.style.left = -(max_margin_x)*Math.exp(-x/max_margin_x/10) + max_margin_x;
+		}else{
+			image.style.left = (max_margin_x)*Math.exp(x/max_margin_x/10) - max_margin_x;
+		}
+		if (y>=0){
+			image.style.top = -(max_margin_y)*Math.exp(-y/max_margin_y/10) + max_margin_y;
+		}else{
+			image.style.top = (max_margin_y)*Math.exp(y/max_margin_y/10) - max_margin_y;
+		}
+	}, 1);
+}
+
+
+window.onload = function(){
+	updateEyeballPosition();
+};
+
+</script>
+
+
+</head>

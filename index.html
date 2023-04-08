@@ -1,15 +1,11 @@
 <head>
-
 <body>
 <link REL=stylesheet href="style.css" type="text/css">
-	 
-	<div class="dot"></div>
 	<div id="left_avatar">
-		<img id="left_eye" src="eye_ball.png">
-		
+		<img id="left_eye" src="left_eye.png">
 	</div>
 	<div id="right_avatar">
-		<img id="right_eye" src="eye_ball.png">
+		<img id="right_eye" src="right_eye.png">
 	</div>
 </body>
 
@@ -31,7 +27,7 @@
 			}
 			
 		
-			var max_margin = (left_rect.right - left_rect.left) / 15;
+			var max_margin = (left_rect.right - left_rect.left) / 115;
 			var x = pointer.x - center.left;
 			var y = pointer.y - center.top;
 			
@@ -41,71 +37,29 @@
 			var cos_theta = x/d;
 			var theta = Math.atan(-y/x);
 			
-			left_eyeball.style.left = r*cos_theta;
-			right_eyeball.style.left = r*cos_theta;
+			left_eyeball.style.left = -6.5+r*cos_theta+"vmin";
+			right_eyeball.style.left = (-5+r*cos_theta) +"vmin";
 			if (y>=0){
-				left_eyeball.style.top = r*Math.sqrt((1-Math.pow(cos_theta,2)));
-				right_eyeball.style.top = r*Math.sqrt((1-Math.pow(cos_theta,2)));
+				left_eyeball.style.top = -10 + r*Math.sqrt((1-Math.pow(cos_theta,2)))+"vmin";
+				right_eyeball.style.top = (-10 + r*Math.sqrt((1-Math.pow(cos_theta,2))))+"vmin";
 			}
 			else{
-				left_eyeball.style.top = -r*Math.sqrt((1-Math.pow(cos_theta,2)));
-				right_eyeball.style.top = -r*Math.sqrt((1-Math.pow(cos_theta,2)));
+				left_eyeball.style.top = -10-r*Math.sqrt((1-Math.pow(cos_theta,2)))+"vmin";
+				right_eyeball.style.top = (-10-r*Math.sqrt((1-Math.pow(cos_theta,2))))+"vmin";
 			}
-			
-			<!-- if (x>=0 && y>=0){ -->
-				
-			<!-- }else if(x>=0 && y<0){ -->
-			
-			<!-- }else if(x<0 && y<0){ -->
-			
-			<!-- }else{ -->
-			
-			<!-- } -->
 		}	
 	}
 
-
-
-var getCoordInDocument = function(e) {
-	e = e || window.event;
-	var x = e.pageX ;
-	var y= e.pageY ;
-	return {'x':x,'y':y};
-}
-
-function changePosition(image,image_box,pointer) 
-{
-	var rect = image_box.getBoundingClientRect();
-	var center = {
-		left: rect.left + (rect.right - rect.left) / 2,
-		top: rect.top + (rect.bottom - rect.top) / 2
+	var getCoordInDocument = function(e) {
+		e = e || window.event;
+		var x = e.pageX ;
+		var y= e.pageY ;
+		return {'x':x,'y':y};
 	}
 
-	
-	var max_margin_x = (rect.right - rect.left) / 20;
-	var max_margin_y = (rect.bottom - rect.top) / 20;
-	
-	var x = pointer.x - center.left;
-	var y = pointer.y - center.top;
-	
-	setTimeout(function (){
-		if (x>=0){
-			image.style.left = -(max_margin_x)*Math.exp(-x/max_margin_x/10) + max_margin_x;
-		}else{
-			image.style.left = (max_margin_x)*Math.exp(x/max_margin_x/10) - max_margin_x;
-		}
-		if (y>=0){
-			image.style.top = -(max_margin_y)*Math.exp(-y/max_margin_y/10) + max_margin_y;
-		}else{
-			image.style.top = (max_margin_y)*Math.exp(y/max_margin_y/10) - max_margin_y;
-		}
-	}, 1);
-}
-
-
-window.onload = function(){
-	updateEyeballPosition();
-};
+	window.onload = function(){
+		updateEyeballPosition();
+	};
 
 </script>
 

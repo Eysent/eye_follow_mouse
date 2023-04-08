@@ -27,7 +27,7 @@
 			}
 			
 		
-			var max_margin = (left_rect.right - left_rect.left) / 115;
+			var max_margin = (left_rect.right - left_rect.left) / 100;
 			var x = pointer.x - center.left;
 			var y = pointer.y - center.top;
 			
@@ -37,23 +37,32 @@
 			var cos_theta = x/d;
 			var theta = Math.atan(-y/x);
 			
-			left_eyeball.style.left = -6.5+r*cos_theta+"vmin";
-			right_eyeball.style.left = (-5+r*cos_theta) +"vmin";
+			var left_eye_bias_x = -6.5
+			var left_eye_bias_y = -10
+			var right_eye_bias_x = -5
+			var right_eye_bias_y = -10
+			
+
+			
+			left_eyeball.style.left = left_eye_bias_x + r*cos_theta+"vmin";
+			right_eyeball.style.left = right_eye_bias_x + r*cos_theta +"vmin";
+
+
 			if (y>=0){
-				left_eyeball.style.top = -10 + r*Math.sqrt((1-Math.pow(cos_theta,2)))+"vmin";
-				right_eyeball.style.top = (-10 + r*Math.sqrt((1-Math.pow(cos_theta,2))))+"vmin";
+				left_eyeball.style.top = left_eye_bias_y + r*Math.sqrt((1-Math.pow(cos_theta,2)))+"vmin";
+				right_eyeball.style.top = (right_eye_bias_y + r*Math.sqrt((1-Math.pow(cos_theta,2))))+"vmin";
 			}
 			else{
-				left_eyeball.style.top = -10-r*Math.sqrt((1-Math.pow(cos_theta,2)))+"vmin";
-				right_eyeball.style.top = (-10-r*Math.sqrt((1-Math.pow(cos_theta,2))))+"vmin";
+				left_eyeball.style.top = left_eye_bias_y-r*Math.sqrt((1-Math.pow(cos_theta,2)))+"vmin";
+				right_eyeball.style.top = (right_eye_bias_y-r*Math.sqrt((1-Math.pow(cos_theta,2))))+"vmin";
 			}
 		}	
 	}
 
 	var getCoordInDocument = function(e) {
 		e = e || window.event;
-		var x = e.pageX ;
-		var y= e.pageY ;
+		var x = e.screenX ;
+		var y= e.screenY ;
 		return {'x':x,'y':y};
 	}
 

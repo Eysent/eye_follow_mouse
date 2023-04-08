@@ -1,18 +1,13 @@
 
 body {
-
-background-image: url("cat_body.png");
-
-background-position: center center;
-
-background-repeat: no-repeat;
-
-background-attachment: fixed;
-
-background-size: cover;
-
-background-color: #000000;
-
+	background-image: url("cat_body.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #000000;
+	margin:0;
+	padding:0;
 }
 
 #left_avatar{
@@ -25,7 +20,7 @@ background-color: #000000;
     display: inline-block;
 	position:absolute;
 	top:28%;
-	left:31.5%;
+	left:31.3%;
 	text-align: center;
 }
 
